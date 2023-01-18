@@ -56,9 +56,14 @@ Press Respective Key to Perform Operations
                         complaint = input("Complaint: ")
                         output_list.append(complaint)
                         output_list.append("Pending")
-
+                
                     elif login_input == 3:
                         print("Logout Successful")
+                
+                else:
+                    print("Password is incorrect.")
+        else:
+            print("No such email ID found")
 
 def get_int(length):
     while True:
@@ -109,5 +114,5 @@ def check_email(login_email):
 
 def generate_complaintID():
     return 0
-    
+
 main()
