@@ -52,8 +52,8 @@ Press Respective Key to Perform Operations
                         name = input("Name: ")
                         output_list.append(name)
                         output_list.append(login_email)
-                        # Write code for complaint type
-                        output_list.append("Other")
+                        ct = complaint_type()
+                        output_list.append(ct)
                         print("Please provide a description of your complaint")
                         complaint = input("Complaint: ")
                         output_list.append(complaint)
@@ -143,5 +143,17 @@ def generate_complaintID():
         else:
             answer = int(today_number)
             return answer
+
+def complaint_type():
+    complaint_types = ["Other", "Delays and Cancellations", "Overcrowding", "Poor Maintainance", "Ticketing Issues", "Safety Issues"]
+    print("Please Choose one of the following categories of complaints")
+    for i in range(0, len(complaint_types)):
+        print((i + 1), ":", complaint_types[i])
+    
+    number = get_int(len(complaint_types))
+    ct = complaint_types[number - 1]
+    print(ct)
+    return ct
+
 
 main()
