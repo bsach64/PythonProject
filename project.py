@@ -38,25 +38,33 @@ Press Respective Key to Perform Operations
                 if login_password == rows[counter][2]:
                     print("Login Successful!")
                     action_text = """What would you like to do?
-1: Registering a New Complaint
-2: Checking Status of Complaint
+1: Register a New Complaint
+2: Check Status of Complaint
 3: Logout"""
+                    print(action_text)
                     login_input = get_int(3)
                     if login_input == 1:
                         print("Please Provide us with the following details to register a complaint")
                         output_list = []
-                        output_list.append(date.today())
-                        # Write code for ComplaintID
-                        output_list.append(1)
+                        output_list.append(str(date.today()))
+                        complaintID = generate_complaintID()
+                        output_list.append(complaintID)
                         name = input("Name: ")
                         output_list.append(name)
+                        output_list.append(login_email)
                         # Write code for complaint type
                         output_list.append("Other")
                         print("Please provide a description of your complaint")
                         complaint = input("Complaint: ")
                         output_list.append(complaint)
                         output_list.append("Pending")
-                
+                        with open("complaints.csv", "a", newline = '') as file:
+                            writer = csv.writer(file)
+                            writer.writerow(output_list)
+                        print()
+                        print("Your complaint has been registered successfully")
+                        print("Your complaintID is: ", complaintID)
+                        print("Thank You for using our service")
                     elif login_input == 3:
                         print("Logout Successful")
                 
@@ -113,6 +121,27 @@ def check_email(login_email):
         return 0
 
 def generate_complaintID():
-    return 0
+    today = str(date.today())
+    today_number = today.replace('-','')
+    today_number = today_number + "000"
+    with open("complaints.csv", "r") as file:
+        reader = csv.reader(file)
+        content = []
+        for row in reader:
+            content.append(row)
+        if content[-1][1] != "ComplaintID":
+            if content[-1][0] == today:
+                prev_id = int(row[1])
+                x = prev_id - int(today_number)
+                x = x + 1
+                answer = int(today_number)
+                answer = answer + x
+                return answer
+            else:
+                answer = int(today_number)
+                return answer
+        else:
+            answer = int(today_number)
+            return answer
 
 main()
