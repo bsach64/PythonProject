@@ -152,7 +152,6 @@ def complaint_type():
     
     number = get_int(len(complaint_types))
     ct = complaint_types[number - 1]
-    print(ct)
     return ct
 
 
