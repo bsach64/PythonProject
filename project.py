@@ -65,6 +65,15 @@ Press Respective Key to Perform Operations
                         print("Your complaint has been registered successfully")
                         print("Your complaintID is: ", complaintID)
                         print("Thank You for using our service")
+                    elif login_input == 2:
+                        content = complaints_as_list()
+                        complaint_counter = 0
+                        for element in content:
+                            if element[3] == login_email:
+                                complaint_counter += 1
+                                print("ComplaintID : " ,element[1], ",", "Status :", element[6])
+                        if complaint_counter == 0:
+                            print("No Complaints Found!")
                     elif login_input == 3:
                         print("Logout Successful")
                 
@@ -124,25 +133,29 @@ def generate_complaintID():
     today = str(date.today())
     today_number = today.replace('-','')
     today_number = today_number + "000"
+    content = complaints_as_list()
+    if content[-1][1] != "ComplaintID":
+        if content[-1][0] == today:
+            prev_id = int(content[-1][1])
+            x = prev_id - int(today_number)
+            x = x + 1
+            answer = int(today_number)
+            answer = answer + x
+            return answer
+        else:
+            answer = int(today_number)
+            return answer
+    else:
+        answer = int(today_number)
+        return answer
+
+def complaints_as_list():
     with open("complaints.csv", "r") as file:
         reader = csv.reader(file)
         content = []
         for row in reader:
             content.append(row)
-        if content[-1][1] != "ComplaintID":
-            if content[-1][0] == today:
-                prev_id = int(row[1])
-                x = prev_id - int(today_number)
-                x = x + 1
-                answer = int(today_number)
-                answer = answer + x
-                return answer
-            else:
-                answer = int(today_number)
-                return answer
-        else:
-            answer = int(today_number)
-            return answer
+    return content
 
 def complaint_type():
     complaint_types = ["Other", "Delays and Cancellations", "Overcrowding", "Poor Maintainance", "Ticketing Issues", "Safety Issues"]
