@@ -3,29 +3,9 @@ import re
 from datetime import date
 
 def main():
-    introduction_text = """Welcome to Railway's Online Complaint Registration System!
-Press Respective Key to Perform Operations
-1: New User
-2: User Login
-3: Admin Login
-4: Register Complaint through PNR
-5: Exit"""
-    print(introduction_text)
-    user_input = get_int(5)
-
+    user_input = program_intro()
     if user_input == 1:
-        print("To create a new account please provide us with the following details.")
-        with open("UserLogin.csv", "a", newline = '') as login_file:
-            input_list = []
-            name = input("Name: ").strip()
-            input_list.append(name)
-            email = get_email()
-            input_list.append(email)
-            password = get_password()
-            input_list.append(password)
-            writer = csv.writer(login_file)
-            writer.writerow(input_list)
-        print("A New User has been created. To register a complaint, please login in.")
+        new_user()    
     
     elif user_input == 2:
         login_email = input("Email: ")
@@ -166,6 +146,32 @@ def complaint_type():
     number = get_int(len(complaint_types))
     ct = complaint_types[number - 1]
     return ct
+
+def new_user():
+    print("To create a new account please provide us with the following details.")
+    with open("UserLogin.csv", "a", newline = '') as login_file:
+        input_list = []
+        name = input("Name: ").strip()
+        input_list.append(name)
+        email = get_email()
+        input_list.append(email)
+        password = get_password()
+        input_list.append(password)
+        writer = csv.writer(login_file)
+        writer.writerow(input_list)
+    print("A New User has been created. To register a complaint, please login in.")
+
+def program_intro():
+    introduction_text = """Welcome to Railway's Online Complaint Registration System!
+Press Respective Key to Perform Operations
+1: New User
+2: User Login
+3: Admin Login
+4: Register Complaint through PNR
+5: Exit"""
+    print(introduction_text)
+    user_input = get_int(5)
+    return user_input
 
 
 main()
