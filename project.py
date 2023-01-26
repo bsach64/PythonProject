@@ -9,58 +9,46 @@ def main():
     
     elif user_input == 2:
         login_email = input("Email: ")
-        counter = check_email(login_email) 
-        if counter != 0:
-            with open("UserLogin.csv", "r") as file:
-                reader = csv.reader(file)
-                rows = list(reader)
-                login_password = input("Password: ").strip()
-                if login_password == rows[counter][2]:
-                    print("Login Successful!")
-                    action_text = """What would you like to do?
+        if login(login_email) == True:
+            action_text = """What would you like to do?
 1: Register a New Complaint
 2: Check Status of Complaint
 3: Logout"""
-                    print(action_text)
-                    login_input = get_int(3)
-                    if login_input == 1:
-                        print("Please Provide us with the following details to register a complaint")
-                        output_list = []
-                        output_list.append(str(date.today()))
-                        complaintID = generate_complaintID()
-                        output_list.append(complaintID)
-                        name = input("Name: ")
-                        output_list.append(name)
-                        output_list.append(login_email)
-                        ct = complaint_type()
-                        output_list.append(ct)
-                        print("Please provide a description of your complaint")
-                        complaint = input("Complaint: ")
-                        output_list.append(complaint)
-                        output_list.append("Pending")
-                        with open("complaints.csv", "a", newline = '') as file:
-                            writer = csv.writer(file)
-                            writer.writerow(output_list)
-                        print()
-                        print("Your complaint has been registered successfully")
-                        print("Your complaintID is: ", complaintID)
-                        print("Thank You for using our service")
-                    elif login_input == 2:
-                        content = complaints_as_list()
-                        complaint_counter = 0
-                        for element in content:
-                            if element[3] == login_email:
-                                complaint_counter += 1
-                                print("ComplaintID : " ,element[1], ",", "Status :", element[6])
-                        if complaint_counter == 0:
-                            print("No Complaints Found!")
-                    elif login_input == 3:
-                        print("Logout Successful")
-                
-                else:
-                    print("Password is incorrect.")
-        else:
-            print("No such email ID found")
+            print(action_text)
+            login_input = get_int(3)
+            if login_input == 1:
+                print("Please Provide us with the following details to register a complaint")
+                output_list = []
+                output_list.append(str(date.today()))
+                complaintID = generate_complaintID()
+                output_list.append(complaintID)
+                name = input("Name: ")
+                output_list.append(name)
+                output_list.append(login_email)
+                ct = complaint_type()
+                output_list.append(ct)
+                print("Please provide a description of your complaint")
+                complaint = input("Complaint: ")
+                output_list.append(complaint)
+                output_list.append("Pending")
+                with open("complaints.csv", "a", newline = '') as file:
+                    writer = csv.writer(file)
+                    writer.writerow(output_list)
+                    print()
+                    print("Your complaint has been registered successfully")
+                    print("Your complaintID is: ", complaintID)
+                    print("Thank You for using our service")
+            elif login_input == 2:
+                content = complaints_as_list()
+                complaint_counter = 0
+                for element in content:
+                    if element[3] == login_email:
+                        complaint_counter += 1
+                        print("ComplaintID : " ,element[1], ",", "Status :", element[6])
+                    if complaint_counter == 0:
+                        print("No Complaints Found!")
+            elif login_input == 3:
+                print("Logout Successful")
 
 def get_int(length):
     while True:
@@ -172,6 +160,24 @@ Press Respective Key to Perform Operations
     print(introduction_text)
     user_input = get_int(5)
     return user_input
+
+def login(login_email):
+    counter = check_email(login_email) 
+    if counter != 0:
+        with open("UserLogin.csv", "r") as file:
+            reader = csv.reader(file)
+            rows = list(reader)
+            login_password = input("Password: ").strip()
+            while True:
+                if login_password == rows[counter][2]:
+                    print("Login Successful!")
+                    return True
+                else:
+                    print("Entered password is incorrect.")
+                    print("Please try again or Press 1 to exit.")
+                    login_password = input("Password: ").strip()
+                    if login_password == "1":
+                        return False
 
 
 main()
