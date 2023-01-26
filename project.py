@@ -1,15 +1,15 @@
 import csv
-import re
 from datetime import date
+import useraccount
 
 def main():
     user_input = program_intro()
     if user_input == 1:
-        new_user()    
+        useraccount.new_user()    
     
     elif user_input == 2:
         login_email = input("Email: ")
-        if login(login_email) == True:
+        if useraccount.login(login_email) == True:
             action_text = """What would you like to do?
 1: Register a New Complaint
 2: Check Status of Complaint
@@ -61,48 +61,6 @@ def get_int(length):
         except ValueError:
             print("Please Enter a Valid Input")
 
-def get_email():
-    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-    while True:
-        email = input("Email: ").strip()
-        if re.match(pattern, email, re.IGNORECASE):
-            return email
-        else:
-            print("Please enter a valid Email")
-
-def get_password():
-    print("Please create a new password.")
-    print("A password must contain atleast an lowercase, uppercase, number and a special character")
-    pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]+$'
-    while True:
-        password = input("Password: ").strip()
-        if re.match(pattern, password):
-            return password
-        else:
-            print("Please enter a valid password")
-
-
-def check_email(login_email):
-    flag = 0
-    counter = 0
-    with open("UserLogin.csv", "r") as file:        
-        reader = csv.reader(file)
-        for row in reader:
-            if row[1] == login_email:
-                flag = flag + 1
-                break
-            counter = counter + 1
-    if flag == 1:
-        return counter
-    else:
-        while True:
-            print("No such email ID was found.")
-            print("Please try again or press 1 to exit.")
-            email = input("Email ID: ")
-            if email == "1":
-                return 0
-            check = check_email(email)
-            return check 
 
 def generate_complaintID():
     today = str(date.today())
@@ -142,20 +100,6 @@ def complaint_type():
     ct = complaint_types[number - 1]
     return ct
 
-def new_user():
-    print("To create a new account please provide us with the following details.")
-    with open("UserLogin.csv", "a", newline = '') as login_file:
-        input_list = []
-        name = input("Name: ").strip()
-        input_list.append(name)
-        email = get_email()
-        input_list.append(email)
-        password = get_password()
-        input_list.append(password)
-        writer = csv.writer(login_file)
-        writer.writerow(input_list)
-    print("A New User has been created. To register a complaint, please login in.")
-
 def program_intro():
     introduction_text = """Welcome to Railway's Online Complaint Registration System!
 Press Respective Key to Perform Operations
@@ -167,26 +111,5 @@ Press Respective Key to Perform Operations
     print(introduction_text)
     user_input = get_int(5)
     return user_input
-
-def login(login_email):
-    check = check_email(login_email) 
-    if check != 0:
-        with open("UserLogin.csv", "r") as file:
-            reader = csv.reader(file)
-            rows = list(reader)
-            login_password = input("Password: ").strip()
-            while True:
-                if login_password == rows[check][2]:
-                    print("Login Successful!")
-                    return True
-                else:
-                    print("Entered password is incorrect.")
-                    print("Please try again or Press 1 to exit.")
-                    login_password = input("Password: ").strip()
-                    if login_password == "1":
-                        return False
-    else:
-        return False
-
 
 main()
