@@ -95,7 +95,14 @@ def check_email(login_email):
     if flag == 1:
         return counter
     else:
-        return 0
+        while True:
+            print("No such email ID was found.")
+            print("Please try again or press 1 to exit.")
+            email = input("Email ID: ")
+            if email == "1":
+                return 0
+            check = check_email(email)
+            return check 
 
 def generate_complaintID():
     today = str(date.today())
@@ -162,14 +169,14 @@ Press Respective Key to Perform Operations
     return user_input
 
 def login(login_email):
-    counter = check_email(login_email) 
-    if counter != 0:
+    check = check_email(login_email) 
+    if check != 0:
         with open("UserLogin.csv", "r") as file:
             reader = csv.reader(file)
             rows = list(reader)
             login_password = input("Password: ").strip()
             while True:
-                if login_password == rows[counter][2]:
+                if login_password == rows[check][2]:
                     print("Login Successful!")
                     return True
                 else:
@@ -178,6 +185,8 @@ def login(login_email):
                     login_password = input("Password: ").strip()
                     if login_password == "1":
                         return False
+    else:
+        return False
 
 
 main()
