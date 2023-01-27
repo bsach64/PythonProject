@@ -1,39 +1,28 @@
-import csv 
-import re
+import generalfunctions
+import csv
+
+
+class User:
+    def __init__(self, name = '', email = '', password = ''):
+        self.name = name
+        self.email = email
+        self.password = password
+
+    def write_user(self):
+        with open("UserLogin.csv", "a", newline='') as login_file:
+            input_list = [self.name, self.email, self.password]
+            writer = csv.writer(login_file)
+            writer.writerow(input_list)
+        print("A New User has been created. To register a complaint, please login in.")
+
+
 
 def new_user():
     print("To create a new account please provide us with the following details.")
-    with open("UserLogin.csv", "a", newline = '') as login_file:
-        input_list = []
-        name = input("Name: ").strip()
-        input_list.append(name)
-        email = get_email()
-        input_list.append(email)
-        password = get_password()
-        input_list.append(password)
-        writer = csv.writer(login_file)
-        writer.writerow(input_list)
-    print("A New User has been created. To register a complaint, please login in.")
-
-def get_email():
-    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-    while True:
-        email = input("Email: ").strip()
-        if re.match(pattern, email, re.IGNORECASE):
-            return email
-        else:
-            print("Please enter a valid Email")
-
-def get_password():
-    print("Please create a new password.")
-    print("A password must contain atleast an lowercase, uppercase, number and a special character")
-    pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]+$'
-    while True:
-        password = input("Password: ").strip()
-        if re.match(pattern, password):
-            return password
-        else:
-            print("Please enter a valid password")
+    name = input("Name: ").strip()
+    email = generalfunctions.get_email()    
+    password = generalfunctions.get_password()
+    return User(name, email, password)
 
 def check_email(login_email):
     flag = 0
@@ -51,15 +40,15 @@ def check_email(login_email):
         while True:
             print("No such email ID was found.")
             print("Please try again or press 1 to exit.")
-            email = get_email()
+            email = generalfunctions.get_email()
             if email == "1":
                 return 0
             check = check_email(email)
             return check
 
 
-def login(login_email):
-    check = check_email(login_email) 
+def login(email):
+    check = check_email(email) 
     if check != 0:
         with open("UserLogin.csv", "r") as file:
             reader = csv.reader(file)
@@ -76,4 +65,4 @@ def login(login_email):
                     if login_password == "1":
                         return False
     else:
-        return False
+        return False    
