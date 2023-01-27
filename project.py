@@ -3,21 +3,17 @@ from datetime import date
 import useraccount
 import complaints
 import generalfunctions
+import texts
 
 def main():
-    user_input = program_intro()
+    user_input = texts.program_intro()
     if user_input == 1:
         useraccount.new_user()    
     
     elif user_input == 2:
         login_email = input("Email: ")
         if useraccount.login(login_email) == True:
-            action_text = """What would you like to do?
-1: Register a New Complaint
-2: Check Status of Complaint
-3: Logout"""
-            print(action_text)
-            login_input = generalfunctions.get_int(3)
+            login_input = texts.login_actions()
             if login_input == 1:
                 print("Please Provide us with the following details to register a complaint")
                 output_list = []
@@ -52,16 +48,6 @@ def main():
             elif login_input == 3:
                 print("Logout Successful")
 
-def program_intro():
-    introduction_text = """Welcome to Railway's Online Complaint Registration System!
-Press Respective Key to Perform Operations
-1: New User
-2: User Login
-3: Admin Login
-4: Register Complaint through PNR
-5: Exit"""
-    print(introduction_text)
-    user_input = generalfunctions.get_int(5)
-    return user_input
+
 
 main()

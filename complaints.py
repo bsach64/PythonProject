@@ -39,3 +39,4 @@ def complaints_as_list():
         for row in reader:
             content.append(row)
     return content
+
