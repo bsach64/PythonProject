@@ -1,4 +1,4 @@
-import generalfunctions
+import getfunctions
 import csv
 
 
@@ -20,8 +20,8 @@ class User:
 def new_user():
     print("To create a new account please provide us with the following details.")
     name = input("Name: ").strip()
-    email = generalfunctions.get_email()    
-    password = generalfunctions.get_password()
+    email = getfunctions.get_email()    
+    password = getfunctions.get_password()
     return User(name, email, password)
 
 def check_email(login_email):
@@ -40,7 +40,7 @@ def check_email(login_email):
         while True:
             print("No such email ID was found.")
             print("Please try again or press 1 to exit.")
-            email = generalfunctions.get_email()
+            email = getfunctions.get_email()
             if email == "1":
                 return 0
             check = check_email(email)

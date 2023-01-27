@@ -1,6 +1,6 @@
 from datetime import date
 import csv
-import generalfunctions
+import getfunctions
 
 def generate_complaintID():
     today = str(date.today())
@@ -27,7 +27,7 @@ def type():
     print("Please Choose one of the following categories of complaints")
     for i in range(0, len(complaint_types)):
         print((i + 1), ":", complaint_types[i])
-    number = generalfunctions.get_int(len(complaint_types))
+    number = getfunctions.get_int(len(complaint_types))
     ct = complaint_types[number - 1]
     return ct
 

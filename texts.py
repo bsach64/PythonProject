@@ -1,4 +1,4 @@
-import generalfunctions
+import getfunctions
 
 def program_intro():
     introduction_text = """Welcome to Railway's Online Complaint Registration System!
@@ -9,7 +9,7 @@ Press Respective Key to Perform Operations
 4: Register Complaint through PNR
 5: Exit"""
     print(introduction_text)
-    user_input = generalfunctions.get_int(5)
+    user_input = getfunctions.get_int(5)
     return user_input
 
 def login_actions():
@@ -18,5 +18,5 @@ def login_actions():
 2: Check Status of Complaint
 3: Logout"""
     print(action_text)
-    login_input = generalfunctions.get_int(3)
+    login_input = getfunctions.get_int(3)
     return login_input
