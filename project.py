@@ -1,4 +1,3 @@
-from datetime import date
 import useraccount
 import complaints
 import texts
@@ -16,15 +15,8 @@ def main():
                 complaints.register(login_email)
             elif login_input == 2:
                 user_complaints = complaints.status(login_email)
-                complaint_counter = 0
-                for complaint in user_complaints:
-                    complaint_counter += 1
-                    print("ComplaintID : " , complaint[1], ",", "Status :", complaint[6])
-                if complaint_counter == 0:
-                    print("No Complaints Found!")
+                complaints.print_status(user_complaints)
     elif login_input == 3:
         print("Logout Successful")
-
-
 
 main()

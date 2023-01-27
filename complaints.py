@@ -71,3 +71,11 @@ def status(login_email):
                 complaints.append(row)
     return complaints
 
+def print_status(complaints):
+    complaint_counter = 0
+    for complaint in complaints:
+        complaint_counter += 1
+        print("ComplaintID : " , complaint[1], ",", "Status :", complaint[6])
+    if complaint_counter == 0:
+        print("No Complaints Found!")
+
