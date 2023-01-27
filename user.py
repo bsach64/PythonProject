@@ -13,7 +13,6 @@ class User:
             input_list = [self.name, self.email, self.password]
             writer = csv.writer(login_file)
             writer.writerow(input_list)
-        print("A New User has been created. To register a complaint, please login in.")
 
 
 
