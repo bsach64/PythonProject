@@ -22,12 +22,11 @@ def generate_complaintID():
         answer = int(today_number)
         return answer
 
-def complaint_type():
+def type():
     complaint_types = ["Other", "Delays and Cancellations", "Overcrowding", "Poor Maintainance", "Ticketing Issues", "Safety Issues"]
     print("Please Choose one of the following categories of complaints")
     for i in range(0, len(complaint_types)):
         print((i + 1), ":", complaint_types[i])
-    
     number = generalfunctions.get_int(len(complaint_types))
     ct = complaint_types[number - 1]
     return ct
@@ -40,7 +39,7 @@ def complaints_as_list():
             content.append(row)
     return content
 
-def register_complaint(login_email):
+def register(login_email):
     print("Please Provide us with the following details to register a complaint")
     output_list = []
     output_list.append(str(date.today()))
@@ -49,8 +48,8 @@ def register_complaint(login_email):
     name = input("Name: ")
     output_list.append(name)
     output_list.append(login_email)
-    ct = complaint_type()
-    output_list.append(ct)
+    complaint_type = type()
+    output_list.append(complaint_type)
     print("Please provide a description of your complaint")
     complaint = input("Complaint: ")
     output_list.append(complaint)
@@ -62,3 +61,13 @@ def register_complaint(login_email):
         print("Your complaint has been registered successfully")
         print("Your complaintID is: ", complaintID)
         print("Thank You for using our service")
+
+def status(login_email):
+    complaints = []
+    with open("complaints.csv", "r") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            if row[3] == login_email:
+                complaints.append(row)
+    return complaints
+
