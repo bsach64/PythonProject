@@ -40,3 +40,25 @@ def complaints_as_list():
             content.append(row)
     return content
 
+def register_complaint(login_email):
+    print("Please Provide us with the following details to register a complaint")
+    output_list = []
+    output_list.append(str(date.today()))
+    complaintID = generate_complaintID()
+    output_list.append(complaintID)
+    name = input("Name: ")
+    output_list.append(name)
+    output_list.append(login_email)
+    ct = complaint_type()
+    output_list.append(ct)
+    print("Please provide a description of your complaint")
+    complaint = input("Complaint: ")
+    output_list.append(complaint)
+    output_list.append("Pending")
+    with open("complaints.csv", "a", newline = '') as file:
+        writer = csv.writer(file)
+        writer.writerow(output_list)
+        print()
+        print("Your complaint has been registered successfully")
+        print("Your complaintID is: ", complaintID)
+        print("Thank You for using our service")
