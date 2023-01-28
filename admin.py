@@ -54,7 +54,25 @@ class Admin(User):
 
     @classmethod
     def sort(cls):
-        ...
+        sorted_content = []
+        with open("complaints.csv", "r") as file:
+            reader = csv.reader(file)
+            for row in reader:
+                if row[6] == "Done":
+                    sorted_content.append(row)
+        
+        with open("complaints.csv", "r") as file:
+            reader = csv.reader(file)
+            for row in reader:
+                if row[6] == "Pending":
+                    sorted_content.append(row)
+
+        x = PrettyTable()
+        x.field_names = ["Date", "ComplaintID", "Name", "Email", "Complaint", "Complaint Type", "Status"]
+        for row in sorted_content:
+            x.add_row(row)
+        print(x)
+        
 
     @classmethod
     def filter(cls, complaint_type):

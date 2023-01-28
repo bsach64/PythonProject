@@ -77,11 +77,10 @@ def admin_login_actions(admin_input, email):
     if admin_input == 1:
         Admin.print_complaints()
     if admin_input == 2:
-        ...
+        Admin.sort()
     if admin_input == 3:
         ct = Complaint.type()
         Admin.filter(ct)
-
     if admin_input == 4:
         complaintID = getfunctions.get_complaintID()
         Admin.delete(complaintID)
