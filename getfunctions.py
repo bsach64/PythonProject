@@ -30,3 +30,17 @@ def get_password():
             return password
         else:
             print("Please enter a valid password")
+
+
+def get_complaintID():
+    while True:
+        try:
+            complaintID_string = input("Enter Complaint ID: ")
+            complaintID_integer = int(complaintID_string)
+            if len(complaintID_string) == 11:
+                return complaintID_integer
+            else:
+                print("Please enter a valid Complaint ID")
+        except ValueError:
+            print("Please enter an integer")
+            

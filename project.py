@@ -45,17 +45,20 @@ Press Respective Key to Perform Operations
     if user_input == 3:
         email = input("Email: ")
         if Admin.login(email, "AdminLogin.csv") == True:
-            admin_text = """What would you like to do?
+            while True:
+                admin_text = """What would you like to do?
 1: Print  All Complaints
 2: Print Sorted Complaints 
 3: Delete a Complaint
 4: Add New Complaint Type
 5: Update Status of Complaint
-6: Exit """
-            print(admin_text)
-            admin_input = getfunctions.get_int(6)
-            if admin_input == 1:
-                Admin.print_complaints()
+6: Logout"""
+                print(admin_text)
+                admin_input = getfunctions.get_int(6)
+                admin_login_actions(admin_input, email)
+                if admin_input == 6:
+                    print("Logout Successful")
+                    break
     
     if user_input == 4:
         new_admin_account = new_user()
@@ -69,7 +72,11 @@ def user_login_actions(login_input, email):
         user_complaints = Complaint.complaint_status(email)
         Complaint.print_status(user_complaints)
         
-
-
+def admin_login_actions(admin_input, email):
+    if admin_input == 1:
+        Admin.print_complaints()
+    if admin_input == 5:
+        complaintID = getfunctions.get_complaintID()
+        Admin.change_status(complaintID)
 
 main()

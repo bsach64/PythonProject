@@ -2,6 +2,8 @@ from complaints import Complaint
 from user import User
 import csv
 from prettytable import PrettyTable
+import getfunctions
+import pandas as pd
 
 class Admin(User):
     def __init__(self, name, email, password):
@@ -9,7 +11,6 @@ class Admin(User):
 
     @classmethod
     def print_complaints(cls):
-        content = []
         with open("complaints.csv", "r") as file:
             reader = csv.reader(file)
             x = PrettyTable()
@@ -21,10 +22,35 @@ class Admin(User):
     
     @classmethod
     def change_status(cls, complaintID):
-        ...
+        change_text = """What would you like the new status to be?
+1: Done
+2: Pending"""
+        print(change_text)
+        change_input = getfunctions.get_int(2)
+        done = "Done"
+        pending = "Pending"
+        with open("complaints.csv", "r") as file:
+            reader = csv.reader(file)
+            content = []
+            for row in reader:
+                if complaintID == row[1]:
+                    if change_input == 1:
+                        print(row[6])
+                        row[6] = done
+                        print(row[6])
+                    if change_input == 2:
+                        row[6] = pending
+                content.append(row)
+
+        with open("complaints.csv", "w+", newline='') as file:
+            writer = csv.writer(file)
+            writer.writerows(content)
 
     @classmethod
     def sort(cls):
+        ...
+
+    def filter(cls):
         ...
 
     @classmethod
@@ -36,16 +62,5 @@ class Admin(User):
         ...
 
 
-def get_complaintID():
-    while True:
-        try:
-            complaintID_string = input("Enter Complaint ID: ")
-            complaintID_integer = int(complaintID_string)
-            if len(ComplaintID_string) == 11:
-                return complaintID_integer
-            else:
-                print("Please enter a valid Complaint ID")
-        except ValueError:
-            print("Please enter an integer")
 
         

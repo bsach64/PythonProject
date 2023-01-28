@@ -33,7 +33,7 @@ class User:
                 email = getfunctions.get_email()
                 if email == "1":
                     return 0
-                check = cls.check_email(email)
+                check = cls.check_email(email, filename)
                 return check
     
     @classmethod
