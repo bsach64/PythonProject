@@ -9,25 +9,29 @@ Press Respective Key to Perform Operations
 2: User Login
 3: Admin Login
 4: Register Complaint through PNR
-5: Exit"""
+5: New Admin
+6: Exit"""
     print(introduction_text)
     user_input = getfunctions.get_int(5)
     if user_input == 1:
         new_account =  user.new_user()
-        new_account.write_user()
+        new_account.write_user("UserLogin.csv")
         after_new_account = """ A new account has been created. What would you like to do next?
 1: Login and Register a Complaint
-2: Exit
-        """    
+2: Exit"""    
         print(after_new_account)
         new_input = getfunctions.get_int(2)
         if new_input == 1:
-            to_login()
+            user_login()
 
     elif user_input == 2:
-        to_login()
+        user_login()
+    
+    elif user_input == 5:
+        new_admin_account = user.new_user()
+        new_admin_account.write_user("AdminLogin.csv")
 
-def to_login():
+def user_login():
     email = input("Email: ")
     if user.login(email) == True:
         action_text = """What would you like to do?

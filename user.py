@@ -1,20 +1,17 @@
 import getfunctions
 import csv
 
-
 class User:
     def __init__(self, name = '', email = '', password = ''):
         self.name = name
         self.email = email
         self.password = password
 
-    def write_user(self):
-        with open("UserLogin.csv", "a", newline='') as login_file:
+    def write_user(self, file_name):
+        with open(file_name, "a", newline='') as login_file:
             input_list = [self.name, self.email, self.password]
             writer = csv.writer(login_file)
             writer.writerow(input_list)
-
-
 
 def new_user():
     print("To create a new account please provide us with the following details.")
