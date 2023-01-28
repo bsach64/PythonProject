@@ -1,5 +1,6 @@
 import complaints
-import user
+from user import User
+from user import new_user
 import getfunctions
 
 def main():
@@ -14,7 +15,7 @@ Press Respective Key to Perform Operations
     print(introduction_text)
     user_input = getfunctions.get_int(5)
     if user_input == 1:
-        new_account =  user.new_user()
+        new_account = new_user()
         new_account.write_user("UserLogin.csv")
         after_new_account = """ A new account has been created. What would you like to do next?
 1: Login and Register a Complaint
@@ -28,12 +29,12 @@ Press Respective Key to Perform Operations
         user_login()
     
     elif user_input == 5:
-        new_admin_account = user.new_user()
+        new_admin_account = new_user()
         new_admin_account.write_user("AdminLogin.csv")
 
 def user_login():
     email = input("Email: ")
-    if user.login(email) == True:
+    if User.login(email) == True:
         action_text = """What would you like to do?
 1: Register a New Complaint
 2: Check Status of Complaint
