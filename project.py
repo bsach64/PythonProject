@@ -49,14 +49,15 @@ Press Respective Key to Perform Operations
                 admin_text = """What would you like to do?
 1: Print  All Complaints
 2: Print Sorted Complaints 
-3: Delete a Complaint
-4: Add New Complaint Type
-5: Update Status of Complaint
-6: Logout"""
+3: Filter Complaints Based on Type
+4: Delete a Complaint
+5: Add New Complaint Type
+6: Update Status of Complaint
+7: Logout"""
                 print(admin_text)
-                admin_input = getfunctions.get_int(6)
+                admin_input = getfunctions.get_int(7)
                 admin_login_actions(admin_input, email)
-                if admin_input == 6:
+                if admin_input == 7:
                     print("Logout Successful")
                     break
     
@@ -75,12 +76,18 @@ def user_login_actions(login_input, email):
 def admin_login_actions(admin_input, email):
     if admin_input == 1:
         Admin.print_complaints()
+    if admin_input == 2:
+        ...
     if admin_input == 3:
+        ct = Complaint.type()
+        Admin.filter(ct)
+
+    if admin_input == 4:
         complaintID = getfunctions.get_complaintID()
         Admin.delete(complaintID)
-    if admin_input == 4:
-        Admin.add_type()
     if admin_input == 5:
+        Admin.add_type()
+    if admin_input == 6:
         complaintID = getfunctions.get_complaintID()
         Admin.change_status(complaintID)
 

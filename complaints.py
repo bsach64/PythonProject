@@ -9,8 +9,8 @@ class Complaint:
         self.complaintID = complaintID
         self.name = name 
         self.email = email
-        self.complaint = complaint
         self.ctype = ctype
+        self.complaint = complaint
         self.status = status 
     
     def register_complaint(self):
@@ -64,7 +64,7 @@ class Complaint:
         for i in range(0, len(complaint_types)):
             print((i + 1), ":", complaint_types[i])
         number = getfunctions.get_int(len(complaint_types))
-        ct = cls.complaint_types[number - 1]
+        ct = complaint_types[number - 1]
         return ct
 
     @classmethod

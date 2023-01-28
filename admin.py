@@ -57,8 +57,18 @@ class Admin(User):
         ...
 
     @classmethod
-    def filter(cls):
-        ...
+    def filter(cls, complaint_type):
+        filtered_content = []
+        with open("complaints.csv", "r") as file:
+            reader = csv.reader(file)
+            for row in reader:
+                if row[4] == complaint_type:
+                    filtered_content.append(row)
+        x = PrettyTable()
+        x.field_names = ["Date", "ComplaintID", "Name", "Email", "Complaint", "Complaint Type", "Status"]
+        for row in filtered_content:
+            x.add_row(row)
+        print(x)
 
     @classmethod
     def delete(cls, complaintID):
