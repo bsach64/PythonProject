@@ -58,13 +58,13 @@ class Admin(User):
         with open("complaints.csv", "r") as file:
             reader = csv.reader(file)
             for row in reader:
-                if row[6] == "Done":
+                if row[6] == "Pending":
                     sorted_content.append(row)
         
         with open("complaints.csv", "r") as file:
             reader = csv.reader(file)
             for row in reader:
-                if row[6] == "Pending":
+                if row[6] == "Done":
                     sorted_content.append(row)
 
         x = PrettyTable()
