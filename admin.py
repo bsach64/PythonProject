@@ -3,7 +3,6 @@ from user import User
 import csv
 from prettytable import PrettyTable
 import getfunctions
-import pandas as pd
 
 class Admin(User):
     def __init__(self, name, email, password):
@@ -29,11 +28,13 @@ class Admin(User):
         change_input = getfunctions.get_int(2)
         done = "Done"
         pending = "Pending"
+        found = False
         with open("complaints.csv", "r") as file:
             reader = csv.reader(file)
             content = []
             for row in reader:
-                if complaintID == row[1]:
+                if str(complaintID) == row[1]:
+                    found = True
                     if change_input == 1:
                         print(row[6])
                         row[6] = done
@@ -41,10 +42,16 @@ class Admin(User):
                     if change_input == 2:
                         row[6] = pending
                 content.append(row)
+        
+        if found == False:
+            print("No such complaint exists!")
 
-        with open("complaints.csv", "w+", newline='') as file:
-            writer = csv.writer(file)
-            writer.writerows(content)
+        if found == True:
+            with open("complaints.csv", "w+", newline='') as file:
+                writer = csv.writer(file)
+                writer.writerows(content)
+            print("Status Changed Successfully!")
+
 
     @classmethod
     def sort(cls):
@@ -54,8 +61,26 @@ class Admin(User):
         ...
 
     @classmethod
-    def delete(cls):
-        ...
+    def delete(cls, complaintID):
+        found = False
+        with open("complaints.csv", "r") as file:
+            reader = csv.reader(file)
+            content = []
+            for row in reader:
+                if str(complaintID) == row[1]:
+                    found = True
+                else:
+                    content.append(row)
+            
+        if found == False:
+            print("No such complaint exists!")
+        
+        if found == True:
+            with open("complaints.csv", "w+", newline='') as file:
+                writer = csv.writer(file)
+                writer.writerows(content)
+            print("Complaint Deleted Successfully!")
+        
 
     @classmethod
     def add_type(self):

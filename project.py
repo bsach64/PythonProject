@@ -75,6 +75,9 @@ def user_login_actions(login_input, email):
 def admin_login_actions(admin_input, email):
     if admin_input == 1:
         Admin.print_complaints()
+    if admin_input == 3:
+        complaintID = getfunctions.get_complaintID()
+        Admin.delete(complaintID)
     if admin_input == 5:
         complaintID = getfunctions.get_complaintID()
         Admin.change_status(complaintID)
