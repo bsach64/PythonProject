@@ -24,12 +24,25 @@ Press Respective Key to Perform Operations
         print(after_new_account)
         new_input = getfunctions.get_int(2)
         if new_input == 1:
-            user_login()
+            user_input = 2
 
-    elif user_input == 2:
-        user_login()
+    if user_input == 2:
+        email = input("Email: ")
+        if User.login(email, "UserLogin.csv") == True:
+            while True:
+                action_text = """What would you like to do?
+1: Register a New Complaint
+2: Check Status of Complaint
+3: Logout"""
+                print(action_text)
+                login_input = getfunctions.get_int(3)
+                if login_input == 3:
+                    print("Logout Successful")
+                    break
+                else:
+                    user_login_actions(login_input, email)
 
-    elif user_input == 3:
+    if user_input == 3:
         email = input("Email: ")
         if Admin.login(email, "AdminLogin.csv") == True:
             admin_text = """What would you like to do?
@@ -44,26 +57,19 @@ Press Respective Key to Perform Operations
             if admin_input == 1:
                 Admin.print_complaints()
     
-    elif user_input == 4:
+    if user_input == 4:
         new_admin_account = new_user()
         new_admin_account.write_user("AdminLogin.csv")
+        
+def user_login_actions(login_input, email):
+    if login_input == 1:
+        new = new_complaint(email)
+        new.register_complaint()
+    elif login_input == 2:
+        user_complaints = Complaint.complaint_status(email)
+        Complaint.print_status(user_complaints)
+        
 
-def user_login():
-    email = input("Email: ")
-    if User.login(email, "UserLogin.csv") == True:
-        action_text = """What would you like to do?
-1: Register a New Complaint
-2: Check Status of Complaint
-3: Logout"""
-        print(action_text)
-        login_input = getfunctions.get_int(3)
-        if login_input == 1:
-            new = new_complaint(email)
-            new.register_complaint()
-        elif login_input == 2:
-            user_complaints = Complaint.complaint_status(email)
-            Complaint.print_status(user_complaints)
-        elif login_input == 3:
-            print("Logout Successful")
+
 
 main()

@@ -57,6 +57,7 @@ class User:
         else:
             return False
 
+
 def new_user():
     print("To create a new account please provide us with the following details.")
     name = input("Name: ").strip()
