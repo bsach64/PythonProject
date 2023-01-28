@@ -78,8 +78,11 @@ def admin_login_actions(admin_input, email):
     if admin_input == 3:
         complaintID = getfunctions.get_complaintID()
         Admin.delete(complaintID)
+    if admin_input == 4:
+        Admin.add_type()
     if admin_input == 5:
         complaintID = getfunctions.get_complaintID()
         Admin.change_status(complaintID)
 
-main()
+if __name__ == "__main__":
+    main()

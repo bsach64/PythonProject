@@ -2,7 +2,6 @@ import csv
 from datetime import date
 import getfunctions
 
-complaint_types = ["Other", "Delays and Cancellations", "Overcrowding", "Poor Maintainance", "Ticketing Issues", "Safety Issues"]
 class Complaint:
     
     def __init__(self, date, complaintID, name, email, complaint, ctype, status):
@@ -56,6 +55,11 @@ class Complaint:
 
     @classmethod
     def type(cls):
+        with open("types.txt", "r") as file:
+            lines = file.readlines()
+        complaint_types = []
+        for line in lines:
+            complaint_types.append(line.rstrip())
         print("Please Choose one of the following categories of complaints")
         for i in range(0, len(complaint_types)):
             print((i + 1), ":", complaint_types[i])

@@ -1,4 +1,3 @@
-from complaints import Complaint
 from user import User
 import csv
 from prettytable import PrettyTable
@@ -57,6 +56,7 @@ class Admin(User):
     def sort(cls):
         ...
 
+    @classmethod
     def filter(cls):
         ...
 
@@ -71,7 +71,6 @@ class Admin(User):
                     found = True
                 else:
                     content.append(row)
-            
         if found == False:
             print("No such complaint exists!")
         
@@ -84,7 +83,12 @@ class Admin(User):
 
     @classmethod
     def add_type(self):
-        ...
+        new_complaint_type = input("Enter New Complaint Type: ").strip()
+        with open("types.txt", "a") as file:
+            file.write(new_complaint_type)
+        print("New Complaint Type Added")
+
+        
 
 
 
