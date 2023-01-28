@@ -1,9 +1,9 @@
-import complaints
 from user import User
 from user import new_user
 from complaints import Complaint
 from complaints import new_complaint
 import getfunctions
+from admin import Admin
 
 def main():
     introduction_text = """Welcome to Railway's Online Complaint Registration System!
@@ -11,9 +11,8 @@ Press Respective Key to Perform Operations
 1: New User
 2: User Login
 3: Admin Login
-4: Register Complaint through PNR
-5: New Admin
-6: Exit"""
+4: New Admin
+5: Exit"""
     print(introduction_text)
     user_input = getfunctions.get_int(5)
     if user_input == 1:
@@ -29,14 +28,29 @@ Press Respective Key to Perform Operations
 
     elif user_input == 2:
         user_login()
+
+    elif user_input == 3:
+        email = input("Email: ")
+        if Admin.login(email, "AdminLogin.csv") == True:
+            admin_text = """What would you like to do?
+1: Print  All Complaints
+2: Print Sorted Complaints 
+3: Delete a Complaint
+4: Add New Complaint Type
+5: Update Status of Complaint
+6: Exit """
+            print(admin_text)
+            admin_input = getfunctions.get_int(6)
+            if admin_input == 1:
+                Admin.print_complaints()
     
-    elif user_input == 5:
+    elif user_input == 4:
         new_admin_account = new_user()
         new_admin_account.write_user("AdminLogin.csv")
 
 def user_login():
     email = input("Email: ")
-    if User.login(email) == True:
+    if User.login(email, "UserLogin.csv") == True:
         action_text = """What would you like to do?
 1: Register a New Complaint
 2: Check Status of Complaint

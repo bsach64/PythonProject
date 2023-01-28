@@ -14,10 +14,10 @@ class User:
             writer.writerow(input_list)
     
     @classmethod
-    def check_email(cls, login_email):
+    def check_email(cls, login_email, filename):
         flag = 0
         counter = 0
-        with open("UserLogin.csv", "r") as file:        
+        with open(filename, "r") as file:        
             reader = csv.reader(file)
             for row in reader:
                 if row[1] == login_email:
@@ -37,10 +37,10 @@ class User:
                 return check
     
     @classmethod
-    def login(cls, email):
-        check = cls.check_email(email) 
+    def login(cls, email, filename):
+        check = cls.check_email(email, filename) 
         if check != 0:
-            with open("UserLogin.csv", "r") as file:
+            with open(filename, "r") as file:
                 reader = csv.reader(file)
                 rows = list(reader)
                 login_password = input("Password: ").strip()

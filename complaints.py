@@ -2,8 +2,8 @@ import csv
 from datetime import date
 import getfunctions
 
+complaint_types = ["Other", "Delays and Cancellations", "Overcrowding", "Poor Maintainance", "Ticketing Issues", "Safety Issues"]
 class Complaint:
-    complaint_types = ["Other", "Delays and Cancellations", "Overcrowding", "Poor Maintainance", "Ticketing Issues", "Safety Issues"]
     
     def __init__(self, date, complaintID, name, email, complaint, ctype, status):
         self.date = date
@@ -57,9 +57,9 @@ class Complaint:
     @classmethod
     def type(cls):
         print("Please Choose one of the following categories of complaints")
-        for i in range(0, len(cls.complaint_types)):
-            print((i + 1), ":", cls.complaint_types[i])
-        number = getfunctions.get_int(len(cls.complaint_types))
+        for i in range(0, len(complaint_types)):
+            print((i + 1), ":", complaint_types[i])
+        number = getfunctions.get_int(len(complaint_types))
         ct = cls.complaint_types[number - 1]
         return ct
 
