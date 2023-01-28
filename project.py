@@ -1,6 +1,8 @@
 import complaints
 from user import User
 from user import new_user
+from complaints import Complaint
+from complaints import new_complaint
 import getfunctions
 
 def main():
@@ -42,10 +44,11 @@ def user_login():
         print(action_text)
         login_input = getfunctions.get_int(3)
         if login_input == 1:
-            complaints.register(email)
+            new = new_complaint(email)
+            new.register_complaint()
         elif login_input == 2:
-            user_complaints = complaints.status(email)
-            complaints.print_status(user_complaints)
+            user_complaints = Complaint.complaint_status(email)
+            Complaint.print_status(user_complaints)
         elif login_input == 3:
             print("Logout Successful")
 
