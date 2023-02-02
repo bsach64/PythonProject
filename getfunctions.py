@@ -9,7 +9,7 @@ def get_int(length):
             else: 
                 print("Number greater than 5")
         except ValueError:
-            print("Please Enter a Valid Input")
+            print("Please Enter an Integer")
 
 def get_email():
     pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'

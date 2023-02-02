@@ -61,11 +61,23 @@ class User:
 def new_user():
     print("To create a new account please provide us with the following details.")
     name = input("Name: ").strip()
-    email = getfunctions.get_email()    
+    while True:
+        email = getfunctions.get_email() 
+        found = login_check(email)
+        if found == False:
+            break
+        else:
+            print("You already have an account.")
+            print("If you want to create a new one, please use a different email ID.") 
     password = getfunctions.get_password()
     return User(name, email, password)
 
 
-
-
+def login_check(email):
+    with open("UserLogin.csv", "r") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            if row[1] == email:
+                return True
+    return False     
     
