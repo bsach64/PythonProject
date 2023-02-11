@@ -108,11 +108,12 @@ class Admin(User):
         
 
     @classmethod
-    def add_type(self):
+    def add_type(cls):
         new_complaint_type = input("Enter New Complaint Type: ").strip()
         with open("types.txt", "a") as file:
             file.write(new_complaint_type)
         print("New Complaint Type Added")
+        
 
         
 

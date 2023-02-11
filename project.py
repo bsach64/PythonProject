@@ -1,5 +1,6 @@
 from user import User
 from user import new_user
+from user import delete_account
 from complaints import Complaint
 from complaints import new_complaint
 import getfunctions
@@ -34,10 +35,14 @@ Press Respective Key to Perform Operations
 1: Register a New Complaint
 2: Check Status of Complaint
 3: Change Password
-4: Logout"""
+4: Delete Account
+5: Logout"""
                 print(action_text)
-                login_input = getfunctions.get_int(4)
+                login_input = getfunctions.get_int(5)
                 if login_input == 4:
+                    delete_account("UserLogin.csv", email)
+                    break
+                if login_input == 5:
                     print("Logout Successful")
                     break
                 else:
@@ -62,11 +67,15 @@ Press Respective Key to Perform Operations
 5: Add New Complaint Type
 6: Update Status of Complaint
 7: Change Password
-8: Logout"""
+8: Delete Account
+9: Logout"""
                 print(admin_text)
-                admin_input = getfunctions.get_int(8)
+                admin_input = getfunctions.get_int(9)
                 admin_login_actions(admin_input, email)
                 if admin_input == 8:
+                    delete_account("AdminLogin.csv", email)
+                    break
+                if admin_input == 9:
                     print("Logout Successful")
                     break
 
@@ -80,6 +89,7 @@ def user_login_actions(login_input, email):
         Complaint.print_status(user_complaints)
     elif login_input == 3:
         User.change_password(email, "UserLogin.csv")
+
         
 def admin_login_actions(admin_input, email):
     if admin_input == 1:
@@ -96,6 +106,7 @@ def admin_login_actions(admin_input, email):
         Admin.change_status(getfunctions.get_complaintID())
     if admin_input == 7:
         User.change_password(email, "AdminLogin.csv")
+    
 
 if __name__ == "__main__":
     main()

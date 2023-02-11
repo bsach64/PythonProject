@@ -98,4 +98,21 @@ def login_check(email):
             if row[1] == email:
                 return True
     return False     
+
+def delete_account(filename, email):
+    found = False
+    with open(filename, 'r') as file:
+        content = []
+        reader = csv.reader(file)
+        for row in reader:
+            if row[1] == email:
+                found = True
+            else:
+                content.append(row)
+    if found == True:
+        with open(filename, 'w+', newline = '') as file:
+            writer = csv.writer(file)
+            writer.writerows(content)
+        print("Your Account has been Successfully Deleted")            
+
     
