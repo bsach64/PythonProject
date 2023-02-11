@@ -30,7 +30,7 @@ class User:
             while True:
                 print("No such email ID was found.")
                 print("Please try again or press 1 to exit.")
-                email = getfunctions.get_email()
+                email = input("Email: ")
                 if email == "1":
                     return 0
                 check = cls.check_email(email, filename)
