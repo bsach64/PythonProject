@@ -19,7 +19,7 @@ Press Respective Key to Perform Operations
         new_account = new_user()
         new_account.write_user("UserLogin.csv")
         after_new_account = """ A new account has been created. What would you like to do next?
-1: Login and Register a Complaint
+1: Login
 2: Exit"""    
         print(after_new_account)
         new_input = getfunctions.get_int(2)
@@ -42,6 +42,13 @@ Press Respective Key to Perform Operations
                     break
                 else:
                     user_login_actions(login_input, email)
+    if user_input == 4:
+        new_admin_account = new_user()
+        new_admin_account.write_user("AdminLogin.csv")
+        print(after_new_account)
+        new_admin_input = getfunctions.get_int(2)
+        if new_admin_input == 1:
+            user_input = 3
 
     if user_input == 3:
         email = input("Email: ")
@@ -54,17 +61,15 @@ Press Respective Key to Perform Operations
 4: Delete a Complaint
 5: Add New Complaint Type
 6: Update Status of Complaint
-7: Logout"""
+7: Change Password
+8: Logout"""
                 print(admin_text)
-                admin_input = getfunctions.get_int(7)
+                admin_input = getfunctions.get_int(8)
                 admin_login_actions(admin_input, email)
-                if admin_input == 7:
+                if admin_input == 8:
                     print("Logout Successful")
                     break
-    
-    if user_input == 4:
-        new_admin_account = new_user()
-        new_admin_account.write_user("AdminLogin.csv")
+
         
 def user_login_actions(login_input, email):
     if login_input == 1:
@@ -89,6 +94,8 @@ def admin_login_actions(admin_input, email):
         Admin.add_type()
     if admin_input == 6:
         Admin.change_status(getfunctions.get_complaintID())
+    if admin_input == 7:
+        User.change_password("AdminLogin.csv", email)
 
 if __name__ == "__main__":
     main()
