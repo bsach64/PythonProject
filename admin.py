@@ -35,9 +35,7 @@ class Admin(User):
                 if str(complaintID) == row[1]:
                     found = True
                     if change_input == 1:
-                        print(row[6])
                         row[6] = done
-                        print(row[6])
                     if change_input == 2:
                         row[6] = pending
                 content.append(row)

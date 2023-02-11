@@ -61,15 +61,15 @@ class User:
     def change_password(cls, email, filename):
         print("Please Enter a New Password")
         password = getfunctions.get_password()
-        with open("UserLogin.csv", "r") as file:
+        with open(filename, "r") as file:
             reader = csv.reader(file)
             content = []
             for row in reader:
-                if email == row[1]:
+                if row[1] == email:
                     row[2] = password
                 content.append(row)
         
-        with open("UserLogin.csv", "w") as file:
+        with open(filename, "w+", newline='') as file:
             writer = csv.writer(file)
             writer.writerows(content)
         print("Password Changed Successfully")

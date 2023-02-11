@@ -95,7 +95,7 @@ def admin_login_actions(admin_input, email):
     if admin_input == 6:
         Admin.change_status(getfunctions.get_complaintID())
     if admin_input == 7:
-        User.change_password("AdminLogin.csv", email)
+        User.change_password(email, "AdminLogin.csv")
 
 if __name__ == "__main__":
     main()
