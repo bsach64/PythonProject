@@ -56,6 +56,23 @@ class User:
                             return False
         else:
             return False
+        
+    @classmethod
+    def change_password(cls, email, filename):
+        print("Please Enter a New Password")
+        password = getfunctions.get_password()
+        with open("UserLogin.csv", "r") as file:
+            reader = csv.reader(file)
+            content = []
+            for row in reader:
+                if email == row[1]:
+                    row[2] = password
+                content.append(row)
+        
+        with open("UserLogin.csv", "w") as file:
+            writer = csv.writer(file)
+            writer.writerows(content)
+        print("Password Changed Successfully")
 
 
 def new_user():
@@ -69,6 +86,7 @@ def new_user():
         else:
             print("You already have an account.")
             print("If you want to create a new one, please use a different email ID.") 
+    print("Please create a new password.")
     password = getfunctions.get_password()
     return User(name, email, password)
 

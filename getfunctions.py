@@ -21,7 +21,6 @@ def get_email():
             print("Please enter a valid Email")
 
 def get_password():
-    print("Please create a new password.")
     print("A password must contain atleast an lowercase, uppercase, number and a special character")
     pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]+$'
     while True:

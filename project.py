@@ -33,10 +33,11 @@ Press Respective Key to Perform Operations
                 action_text = """What would you like to do?
 1: Register a New Complaint
 2: Check Status of Complaint
-3: Logout"""
+3: Change Password
+4: Logout"""
                 print(action_text)
-                login_input = getfunctions.get_int(3)
-                if login_input == 3:
+                login_input = getfunctions.get_int(4)
+                if login_input == 4:
                     print("Logout Successful")
                     break
                 else:
@@ -72,6 +73,8 @@ def user_login_actions(login_input, email):
     elif login_input == 2:
         user_complaints = Complaint.complaint_status(email)
         Complaint.print_status(user_complaints)
+    elif login_input == 3:
+        User.change_password(email, "UserLogin.csv")
         
 def admin_login_actions(admin_input, email):
     if admin_input == 1:
@@ -79,16 +82,13 @@ def admin_login_actions(admin_input, email):
     if admin_input == 2:
         Admin.sort()
     if admin_input == 3:
-        ct = Complaint.type()
-        Admin.filter(ct)
+        Admin.filter(Complaint.type())
     if admin_input == 4:
-        complaintID = getfunctions.get_complaintID()
-        Admin.delete(complaintID)
+        Admin.delete(getfunctions.get_complaintID())
     if admin_input == 5:
         Admin.add_type()
     if admin_input == 6:
-        complaintID = getfunctions.get_complaintID()
-        Admin.change_status(complaintID)
+        Admin.change_status(getfunctions.get_complaintID())
 
 if __name__ == "__main__":
     main()
