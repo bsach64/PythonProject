@@ -110,8 +110,13 @@ class Admin(User):
     @classmethod
     def add_type(cls):
         new_complaint_type = input("Enter New Complaint Type: ").strip()
-        with open("types.txt", "a") as file:
-            file.write(new_complaint_type)
+        content = []
+        with open("types.txt", "r", newline='') as file:
+            for row in file:
+                content.append(row)
+        content.append(new_complaint_type + '\r\n')
+        with open("types.txt", "w", newline='') as file:
+            file.writelines(content)
         print("New Complaint Type Added")
         
 

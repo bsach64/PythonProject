@@ -19,7 +19,7 @@ Press Respective Key to Perform Operations
     if user_input == 1:
         new_account = new_user()
         new_account.write_user("UserLogin.csv")
-        after_new_account = """ A new account has been created. What would you like to do next?
+        after_new_account = """A new account has been created. What would you like to do next?
 1: Login
 2: Exit"""    
         print(after_new_account)
