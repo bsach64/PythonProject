@@ -7,7 +7,7 @@ def get_int(length):
             if n in range(1, length + 1):
                 return n
             else: 
-                print("Number greater than 5")
+                print("Number greater than ", length)
         except ValueError:
             print("Please Enter an Integer")
 
