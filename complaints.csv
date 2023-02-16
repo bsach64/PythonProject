@@ -10,4 +10,12 @@ Date,ComplaintID,Name,Email,Complaint Type,Complaint,Status
 2023-02-14,20230214008,Arman Singh,arman@gmail.com,Ticketing Issues,"Ticket counter was closed for four hours, this morning.",Pending
 2023-02-14,20230214009,Arman Singh,arman@gmail.com,Safety Issues,Broken shards of glass in train compartment.,Pending
 2023-02-14,20230214010,Arman Singh,arman@gmail.com,Poor Maintainance,Collection of dust and webs underneath train seat.,Pending
-2023-02-14,20230214011,Bhavik Sachdev,b.sachdev1904@gmail.com,Test,Testing complaint registration system.,Pending
+2023-02-14,20230214011,Bhavik Sachdev,b.sachdev1904@gmail.com,Test,Testing complaint registration system.,Done
+2023-02-16,20230216000,Arman Singh,arman@gmail.com,Other,Not enough trains connecting DRZ - R,Done
+2023-02-16,20230216001,Arman Singh,arman@gmail.com,Overcrowding,Train between DRZ - R is always overcrowded,Pending
+2023-02-16,20230216002,Arman Singh,arman@gmail.com,Poor Maintainance,Train Compartments are very old and not clean.,Pending
+2023-02-16,20230216003,Amritanshu ,A@g.com,Overcrowding,Train to Allahabad is always overcrowded,Pending
+2023-02-16,20230216004,Amritanshu,A@g.com,Ticketing Issues,No one at Ticketing Counter,Pending
+2023-02-16,20230216005,Amritanshu,A@g.com,Safety Issues,No windows in sleeper cabin,Pending
+2023-02-16,20230216006,Birbal Barik,birbal@iiitnr.com,Ticketing Issues,Could not get a ticket to a train to Raipur,Pending
+2023-02-16,20230216007,Birbal Barik,birbal@iiitnr.com,Overcrowding,Train to Bhilai is always overcrowded.,Done
