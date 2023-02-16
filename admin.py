@@ -66,7 +66,7 @@ class Admin(User):
                     sorted_content.append(row)
 
         x = PrettyTable()
-        x.field_names = ["Date", "ComplaintID", "Name", "Email", "Complaint", "Complaint Type", "Status"]
+        x.field_names = ["Date","ComplaintID","Name","Email","Complaint","Complaint Type","Status"]
         for row in sorted_content:
             x.add_row(row)
         print(x)
@@ -81,7 +81,7 @@ class Admin(User):
                 if row[4] == complaint_type:
                     filtered_content.append(row)
         x = PrettyTable()
-        x.field_names = ["Date", "ComplaintID", "Name", "Email", "Complaint", "Complaint Type", "Status"]
+        x.field_names = ["Date","ComplaintID","Name","Email","Complaint","Complaint Type","Status"]
         for row in filtered_content:
             x.add_row(row)
         print(x)
