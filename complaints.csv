@@ -19,3 +19,4 @@ Date,ComplaintID,Name,Email,Complaint Type,Complaint,Status
 2023-02-16,20230216006,Birbal Barik,birbal@iiitnr.com,Ticketing Issues,Could not get a ticket to a train to Raipur,Pending
 2023-02-16,20230216007,Birbal Barik,birbal@iiitnr.com,Overcrowding,Train to Bhilai is always overcrowded.,Done
 2023-02-16,20230216008,Sanjay Sachdev,sanjay@gmail.com,Delays and Cancellations,Train to Jabalpur was delayed by 5 Hours.,Pending
+2023-02-18,20230218000,Bhavik Sachdev,b.sachdev1904@gmail.com,Ticketing Issues,Could not get ticket for the train to Durg,Pending

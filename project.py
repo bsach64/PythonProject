@@ -16,12 +16,12 @@ Press Respective Key to Perform Operations
 5: Exit"""
     print(introduction_text)
     user_input = getfunctions.get_int(5)
+    after_new_account = """A new account has been created. What would you like to do next?
+1: Login
+2: Exit"""
     if user_input == 1:
         new_account = new_user()
-        new_account.write_user("UserLogin.csv")
-        after_new_account = """A new account has been created. What would you like to do next?
-1: Login
-2: Exit"""    
+        new_account.write_user("UserLogin.csv")    
         print(after_new_account)
         new_input = getfunctions.get_int(2)
         if new_input == 1:
